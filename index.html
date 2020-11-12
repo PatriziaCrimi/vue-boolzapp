@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Boolzapp</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <div id="root">
+      <div id="page-wrapper">
+        <div class="container">
+          <!-- Aside on the left -->
+          <aside>
+            <div class="user">
+              <img src="img/ratman.jpg" alt="user icon">
+              <div class="aside-icons">
+                <i class="fas fa-circle-notch"></i>
+                <i class="fas fa-comment-alt"></i>
+                <i class="fas fa-ellipsis-v"></i>
+              </div>
+            </div>
+            <div class="new-messages">
+
+            </div>
+            <div class="search">
+              <i class="fa fa-search" aria-hidden="true"></i>
+              <input type="text" name="" value="">
+            </div>
+            <div class="contacts-list-container">
+              <ul id="contacts-list">
+                <li v-for="(contact, index) in contacts_list">
+                  <img :src="contact.avatar" :alt="contact.name">
+                  <div class="contact-name">
+                    <span>{{contact.name}}</span>
+                    <small>{{contact.messages_list[0].message}}</small>
+                  </div>
+                  <span class="time">21.05</span>
+                </li>
+              </ul>
+            </div>
+          </aside>
+          <!-- Main on the right -->
+          <main>
+
+          </main>
+        </div>  <!-- Closing container -->
+      </div>  <!-- Closing page-wrapper -->
+    </div>  <!-- Closing #root (VUE JS) -->
+    <script type="text/javascript" src="action.js"></script>
+  </body>
+</html>
