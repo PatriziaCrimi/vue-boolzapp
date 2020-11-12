@@ -33,8 +33,9 @@
             </div>
             <div class="search">
               <i class="fa fa-search" aria-hidden="true"></i>
-              <input type="text" name="" value="">
+              <input type="text" placeholder="Cerca o inizia una nuova chat">
             </div>
+            <!-- Contacts list -->
             <div class="contacts-list-container">
               <ul id="contacts-list">
                 <li v-for="(contact, index) in contacts_list">
@@ -65,6 +66,23 @@
                 <i class="fas fa-paperclip"></i>
                 <i class="fas fa-ellipsis-v"></i>
               </div>
+            </div>
+            <!-- Chat window -->
+            <div id="chat-window">
+              <div class="message sent">
+                Some text sent
+              </div>
+              <div class="message received">
+                Some text received
+              </div>
+              <div class="message sent">
+                Some text sent
+              </div>
+            </div>
+            <div id="main-bottom">
+              <i class="far fa-smile"></i>
+              <input type="text" placeholder="Scrivi un messaggio">
+              <i class="fas fa-microphone"></i>
             </div>
           </main>
         </div>  <!-- Closing container -->

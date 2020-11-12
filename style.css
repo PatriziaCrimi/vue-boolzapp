@@ -16,8 +16,13 @@ img {
   border-radius: 50%;
 }
 
-h2, h3 {
+h2 {
   font-size: 16px;
+}
+
+h3 {
+  letter-spacing: 0.5px;
+  font-size: 14px;
 }
 
 ul {
@@ -116,7 +121,7 @@ aside > .contacts-list-container {
   background-color: #000;
   width: 100%;
   height: calc(100% - 160px);
-  overflow: auto;
+  overflow-y: scroll;
   color: #fff;
 }
 
@@ -124,18 +129,13 @@ aside > .contacts-list-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 10px;
 }
 
 ul#contacts-list .contact-info {
   float: left;
   display: flex;
   align-items: center;
-}
-
-ul#contacts-list .name-and-preview {
-}
-
-ul#contacts-list span.time {
 }
 
 /* Main */
@@ -150,6 +150,7 @@ main {
 main #main-top {
   background-color: #dad8cf;
   width: 100%;
+  height: 60px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -160,15 +161,45 @@ main #main-top {
   align-items: center;
 }
 
-
-#main-top > .current-contact > img {
-}
-
-#main-top > .current-contact > .current-contact-info {
-}
-
 #main-top .main-icons > i {
   padding: 8px;
+}
+
+main #chat-window {
+  height: calc(100% - 120px);
+  overflow-y: scroll;
+  padding: 50px 60px;
+}
+
+#chat-window .message {
+  padding: 20px;
+  border-radius: 10px;
+  clear: both;
+}
+
+.message.sent {
+  background-color: #90EE90;
+  float: right;
+}
+
+.message.received {
+  background-color: #fff;
+  float: left;
+}
+
+main #main-bottom {
+  background-color: #F2F2F2;
+  height: 60px;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+#main-bottom > input {
+  height: 60%;
+  width: 80%;
+  border-radius: 5px;
 }
 
 
@@ -193,6 +224,13 @@ main #main-top {
   .container {
     max-width: 960px;
   }
+}
+
+/* Breakpoint Extra Large 1200px xl */
+@media screen and (min-width: 1200px) {
+  .container {
+    max-width: 1140px;
+  }
 
   img {
     height: 80px;
@@ -200,7 +238,9 @@ main #main-top {
   }
 
   aside > .user,
-  aside > .new-messages-container {
+  aside > .new-messages-container,
+  main #main-top,
+  main #main-bottom {
     height: 80px;
   }
 
@@ -211,11 +251,15 @@ main #main-top {
   aside > .contacts-list-container {
     height: calc(100% - 210px);
   }
+
+  main #chat-window {
+    height: calc(100% - 160px);
+  }
 }
 
-/* Breakpoint Extra Large 1200px xl */
-@media screen and (min-width: 1200px) {
+/* Breakpoint 1440px */
+@media screen and (min-width: 1440px) {
   .container {
-    max-width: 1140px;
+    max-width: 1350px;
   }
 }
