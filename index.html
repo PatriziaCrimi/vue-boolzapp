@@ -4,6 +4,8 @@
     <meta charset="utf-8">
     <title>Boolzapp</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@200;300;400;600;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
     <link rel="stylesheet" href="style.css">
@@ -12,7 +14,7 @@
     <div id="root">
       <div id="page-wrapper">
         <div class="container">
-          <!-- Aside on the left -->
+          <!-- Aside (left side) -->
           <aside>
             <div class="user">
               <img src="img/ratman.jpg" alt="user icon">
@@ -22,8 +24,12 @@
                 <i class="fas fa-ellipsis-v"></i>
               </div>
             </div>
-            <div class="new-messages">
-
+            <div class="new-messages-container">
+              <i class="fas fa-bell-slash"></i>
+              <div class="new-messages">
+                <h2>Ricevi notifiche di nuovi messaggi</h2>
+                <a href="#">Attiva notifiche desktop</a>
+              </div>
             </div>
             <div class="search">
               <i class="fa fa-search" aria-hidden="true"></i>
@@ -32,19 +38,34 @@
             <div class="contacts-list-container">
               <ul id="contacts-list">
                 <li v-for="(contact, index) in contacts_list">
-                  <img :src="contact.avatar" :alt="contact.name">
-                  <div class="contact-name">
-                    <span>{{contact.name}}</span>
-                    <small>{{contact.messages_list[0].message}}</small>
+                  <div class="contact-info">
+                    <img :src="contact.avatar" :alt="contact.name">
+                    <div class="name-and-preview">
+                      <h3>{{contact.name}}</h3>
+                      <small>{{contact.messages_list[0].message}}</small>
+                    </div>
                   </div>
                   <span class="time">21.05</span>
                 </li>
               </ul>
             </div>
           </aside>
-          <!-- Main on the right -->
+          <!-- Main (right side) -->
           <main>
-
+            <div id="main-top">
+              <div class="current-contact">
+                <img src="img/camus.jpg" alt="avatar contatto corrente">
+                <div class="current-contact-info">
+                  <h3>Name</h3>
+                  <small>Ultimo accesso</small>
+                </div>
+              </div>
+              <div class="main-icons">
+                <i class="fa fa-search" aria-hidden="true"></i>
+                <i class="fas fa-paperclip"></i>
+                <i class="fas fa-ellipsis-v"></i>
+              </div>
+            </div>
           </main>
         </div>  <!-- Closing container -->
       </div>  <!-- Closing page-wrapper -->
