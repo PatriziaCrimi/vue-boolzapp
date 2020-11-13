@@ -1,22 +1,45 @@
-function getRndInteger(min, max) {
+// --------------------------- CONSTANTS & VARIABLES ---------------------------
+
+let contacts_quantity = 7; // (7 = contacts_list.length - 1) ma come si fa ad accedere alle variabili in "DATA" per usarle per assegnare altre variabili sempre in "data"???
+const user_messages_list = [  // come faccio a inserirlo dentro ai "DATA" di Vue e ad averci comunque accesso per assegnare un valore ad un'altra variabile in "data" (valore legato a questa variabile qui)?
+  'Non esistono ostacoli troppo grossi, signore. Esistono solo motivazioni troppo piccole.',
+  'Piccettino dice che quando le cose mi vanno male è perché vengo punito per il modo in cui mi sbarazzo dei testimoni di Geova quando suonano alla mia porta.',
+  'Ma il problema non è tanto la fuga dei cervelli, quanto il fatto che i corpi restano qui.',
+  'Ah, la SCIENZA! Spiegare come funziona il mondo che ci circonda, in maniera che gli altri non possano capire!',
+  'Siamo molto simili... amiamo il pericolo, il rischio... viviamo liberi dalle regole e dalle leggi dei comuni mortali... No, aspetta! Non posso girare a sinistra è contromano!',
+  'Avverto il tuo stupore, il tuo smarrimento... l\'angoscia della tua mente che varca in un attimo lo spazio e il tempo, portandoti a confronto con ciò che diverrai... Anvedi che panza!',
+  'In una classifica dei supereroi più conosciuti, vengo dopo l\'uomo-coperchio.',
+  'Mi guardo intorno per chilometri e chilometri, c\'è solo il nulla. Dove mi trovo? In Molise!',
+  'Polvere alla polvere... cenere alla cenere... Alla fine ho dovuto licenziare la donna delle pulizie!',
+  'Una pastorella di origini svizzere rivela il quarto segreto di Fatima: Bisogna aggiungere una noce di burro a fine cottura!',
+  'Ho eseguito una serie di test sulla tua intelligenza, per stabilire a quale livello appartenga: \'scolastico\', \'avanzato\', \'universitario\', \'specialistico\', o \'superiore\'. Il risultato è \'coleottero\'.',
+  'Esiste un posto dove si riuniscono i casi umani più disperati nell\'ultimo tentativo di trovare un\'anima gemella: mi sono iscritto al club di Star Trek, ma mi hanno cacciato quando ho chiesto dove fossero le spade laser!',
+  'Sono un supereroe! Posso spostare un adulto senza spostarlo. Il mio superpotere si chiama \'peto\'!',
+]
+
+// ------------------------------ FUNCTIONS ------------------------------
+
+// Come si fa a mettere queste funzioni dentro i "METHODS" e ad averne accesso per assegnare valori alle variabili dichiarate in "data" (valori legati a queste funzioni)?
+
+// Generating random number
+const getRndInteger = (min, max) => {
   return Math.floor(Math.random() * (max - min + 1) ) + min;
 };
+
+// Generating random Rat-Man quote (user's sent messages)
+const getRndQuote = (quotes_list, first) => {
+  return quotes_list[getRndInteger(first, quotes_list.length - 1)];
+};
+
+// ------------------------------ VUE JS ------------------------------
 
 let app = new Vue({
   el: '#root',
   data: {
-    index_chat: getRndInteger(0, 7), // 7 = contacts_list.length - 1 (come si accede a questa variabile????)
+    index_chat: getRndInteger(0, contacts_quantity), // contacts_quantity = 7 = contacts_list.length - 1) ma come faccio ad accedere alla variabile "contacts_list" per usarla per assegnar eun valore a questa variabile qui??
     user: {
       name: 'Rat-Man',
       avatar: 'img/ratman.jpg',
-      messages_sent: [
-        'Non esistono ostacoli troppo grossi, signore. Esistono solo motivazioni troppo piccole.',
-        'Piccettino dice che quando le cose mi vanno male è perché vengo punito per il modo in cui mi sbarazzo dei testimoni di Geova quando suonano alla mia porta.',
-        'Ma il problema non è tanto la fuga dei cervelli, quanto il fatto che i corpi restano qui.',
-        'SCIENZA! Spiegare come funziona il mondo che ci circonda, in maniera che gli altri non possano capire!',
-        'Siamo molto simili... amiamo il pericolo, il rischio... viviamo liberi dalle regole e dalle leggi dei comuni mortali... Aspetta! Non posso girare a sinistra è contromano!',
-        'Avverto il tuo stupore, il tuo smarrimento... l\'angoscia della tua mente che varca in un attimo lo spazio e il tempo, portandoti a confronto con ciò che diverrai... Anvedi che panza!',
-      ]
     },
     contacts_list: [
       {
@@ -31,8 +54,7 @@ let app = new Vue({
           },
           {
             date: '***data da rendere dinamica***',
-            message: 'PROVA',
-            // message: this.user.messages_sent[0],
+            message: getRndQuote(user_messages_list, 0),
             status: 'sent',
           },
           {
@@ -42,8 +64,7 @@ let app = new Vue({
           },
           {
             date: '***data da rendere dinamica***',
-            message: 'PROVA',
-            // message: this.user.messages_list[0].message,
+            message: getRndQuote(user_messages_list, 0),
             status: 'sent',
           },
         ],
@@ -60,8 +81,7 @@ let app = new Vue({
           },
           {
             date: '***data da rendere dinamica***',
-            message: 'PROVA',
-            // message: this.user.messages_list[0].message,
+            message: getRndQuote(user_messages_list, 0),
             status: 'sent',
           },
           {
@@ -71,8 +91,7 @@ let app = new Vue({
           },
           {
             date: '***data da rendere dinamica***',
-            message: 'PROVA',
-            // message: this.user.messages_list[0].message,
+            message: getRndQuote(user_messages_list, 0),
             status: 'sent',
           },
           {
@@ -94,8 +113,7 @@ let app = new Vue({
           },
           {
             date: '***data da rendere dinamica***',
-            message: 'PROVA',
-            // message: this.user.messages_list[0].message,
+            message: getRndQuote(user_messages_list, 0),
             status: 'sent',
           },
           {
@@ -105,8 +123,7 @@ let app = new Vue({
           },
           {
             date: '***data da rendere dinamica***',
-            message: 'PROVA',
-            // message: this.user.messages_list[0].message,
+            message: getRndQuote(user_messages_list, 0),
             status: 'sent',
           },
         ],
@@ -123,8 +140,7 @@ let app = new Vue({
           },
           {
             date: '***data da rendere dinamica***',
-            message: 'PROVA',
-            // message: this.user.messages_list[0].message,
+            message: getRndQuote(user_messages_list, 0),
             status: 'sent',
           },
           {
@@ -134,8 +150,7 @@ let app = new Vue({
           },
           {
             date: '***data da rendere dinamica***',
-            message: 'PROVA',
-            // message: this.user.messages_list[0].message,
+            message: getRndQuote(user_messages_list, 0),
             status: 'sent',
           },
           {
@@ -145,8 +160,7 @@ let app = new Vue({
           },
           {
             date: '***data da rendere dinamica***',
-            message: 'PROVA',
-            // message: this.user.messages_list[0].message,
+            message: getRndQuote(user_messages_list, 0),
             status: 'sent',
           },
           {
@@ -168,8 +182,7 @@ let app = new Vue({
           },
           {
             date: '***data da rendere dinamica***',
-            message: 'PROVA',
-            // message: this.user.messages_list[0].message,
+            message: getRndQuote(user_messages_list, 0),
             status: 'sent',
           },
           {
@@ -179,8 +192,7 @@ let app = new Vue({
           },
           {
             date: '***data da rendere dinamica***',
-            message: 'PROVA',
-            // message: this.user.messages_list[0].message,
+            message: getRndQuote(user_messages_list, 0),
             status: 'sent',
           },
         ],
@@ -197,8 +209,7 @@ let app = new Vue({
           },
           {
             date: '***data da rendere dinamica***',
-            message: 'PROVA',
-            // message: this.user.messages_list[0].message,
+            message: getRndQuote(user_messages_list, 0),
             status: 'sent',
           },
           {
@@ -208,8 +219,7 @@ let app = new Vue({
           },
           {
             date: '***data da rendere dinamica***',
-            message: 'PROVA',
-            // message: this.user.messages_list[0].message,
+            message: getRndQuote(user_messages_list, 0),
             status: 'sent',
           },
           {
@@ -231,8 +241,7 @@ let app = new Vue({
           },
           {
             date: '***data da rendere dinamica***',
-            message: 'PROVA',
-            // message: this.user.messages_list[0].message,
+            message: getRndQuote(user_messages_list, 0),
             status: 'sent',
           },
           {
@@ -242,8 +251,7 @@ let app = new Vue({
           },
           {
             date: '***data da rendere dinamica***',
-            message: 'PROVA',
-            // message: this.user.messages_list[0].message,
+            message: getRndQuote(user_messages_list, 0),
             status: 'sent',
           },
           {
@@ -253,8 +261,7 @@ let app = new Vue({
           },
           {
             date: '***data da rendere dinamica***',
-            message: 'PROVA',
-            // message: this.user.messages_list[0].message,
+            message: getRndQuote(user_messages_list, 0),
             status: 'sent',
           },
           {
@@ -276,8 +283,7 @@ let app = new Vue({
           },
           {
             date: '***data da rendere dinamica***',
-            message: 'PROVA',
-            // message: this.user.messages_list[0].message,
+            message: getRndQuote(user_messages_list, 0),
             status: 'sent',
           },
           {
@@ -287,13 +293,12 @@ let app = new Vue({
           },
           {
             date: '***data da rendere dinamica***',
-            message: 'PROVA',
-            // message: this.user.messages_list[0].message,
+            message: getRndQuote(user_messages_list, 0),
             status: 'sent',
           },
         ],
       },
-    ] // Closing "contacts list"
+    ], // Closing "contacts list"
   },  // Closing data
   methods: {
     showChat(index_contact) {

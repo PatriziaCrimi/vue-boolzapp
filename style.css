@@ -51,7 +51,7 @@ input {
 
 aside .user > .aside-icons > i,
 #main-top .main-icons > i {
-  padding: 0 10px;
+  padding: 0 8px;
 }
 
 aside > .user,
@@ -172,6 +172,12 @@ aside > .contacts-list-container {
   justify-content: space-between;
   border-bottom: 1px solid #585858;
   cursor: pointer;
+  opacity: 0.5;
+  transition: opacity 0.25s;
+}
+
+.contacts-list-container > ul#contacts-list > li.active {
+  opacity: 1;
 }
 
 ul#contacts-list > li > .contact-info {
@@ -251,13 +257,18 @@ main #main-bottom {
 
 #main-bottom > input {
   height: 70%;
-  width: 80%;
+  width: 75%;
   border-radius: 5px;
   border: 1px solid #6E6E6E;
 }
 
 #main-bottom > i {
   font-size: 18px;
+}
+
+#main-bottom > i[class*="fa-share-square"] {
+  font-size: 22px;
+  color: #424242;
 }
 
 
@@ -311,7 +322,7 @@ main #main-bottom {
 
   aside .user > .aside-icons > i,
   #main-top .main-icons > i {
-    padding: 0 15px;
+    padding: 0 12px;
   }
 
   aside > .user,
@@ -343,6 +354,10 @@ main #main-bottom {
 
   main #main-bottom > i {
     font-size: 22px;
+  }
+
+  #main-bottom > i[class*="fa-share-square"] {
+    font-size: 26px;
   }
 }
 

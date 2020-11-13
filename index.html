@@ -41,7 +41,7 @@
             <!-- Contacts list -->
             <div class="contacts-list-container">
               <ul id="contacts-list">
-                <li @click="showChat(index)" v-for="(contact, index) in contacts_list">
+                <li @click="showChat(index)" :class="(index === index_chat) ? 'active' : ''" v-for="(contact, index) in contacts_list">
                   <div class="contact-info">
                     <img :src="contact.avatar" :alt="contact.name + ' avatar'">
                     <div class="name-and-preview">
@@ -80,6 +80,7 @@
             <div id="main-bottom">
               <i class="far fa-smile"></i>
               <input type="text" placeholder="Scrivi un messaggio">
+              <i class="fas fa-share-square"></i>
               <i class="fas fa-microphone"></i>
             </div>
           </main>
