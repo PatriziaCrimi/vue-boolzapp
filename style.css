@@ -213,6 +213,7 @@ main #chat-window {
   clear: both;
   margin: 20px 0;
   position: relative;
+  max-width: 60%;
 }
 
 .message.sent {

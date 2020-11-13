@@ -4,6 +4,38 @@ let app = new Vue({
     user: {
       name: 'Ratman',
       avatar: 'img/ratman.jpg',
+      messages_list: [
+        {
+          date: '***data da rendere dinamica***',
+          message: 'Non esistono ostacoli troppo grossi, signore. Esistono solo motivazioni troppo piccole.',
+          status: 'sent',
+        },
+        {
+          date: '***data da rendere dinamica***',
+          message: 'Piccettino dice che quando le cose mi vanno male è perché vengo punito per il modo in cui mi sbarazzo dei testimoni di Geova quando suonano alla mia porta.',
+          status: 'sent',
+        },
+        {
+          date: '***data da rendere dinamica***',
+          message: 'Ma il problema non è tanto la fuga dei cervelli, quanto il fatto che i corpi restano qui.',
+          status: 'sent',
+        },
+        {
+          date: '***data da rendere dinamica***',
+          message: 'SCIENZA! Spiegare come funziona il mondo che ci circonda, in maniera che gli altri non possano capire!',
+          status: 'sent',
+        },
+        {
+          date: '***data da rendere dinamica***',
+          message: 'Siamo molto simili... amiamo il pericolo, il rischio... viviamo liberi dalle regole e dalle leggi dei comuni mortali... Aspetta! Non posso girare a sinistra è contromano!',
+          status: 'sent',
+        },
+        {
+          date: '***data da rendere dinamica***',
+          message: 'Avverto il tuo stupore, il tuo smarrimento... l\'angoscia della tua mente che varca in un attimo lo spazio e il tempo, portandoti a confronto con ciò che diverrai... Anvedi che panza!',
+          status: 'sent',
+        },
+      ]
     },
     contacts_list: [
       {

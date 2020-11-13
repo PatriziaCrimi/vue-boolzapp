@@ -72,11 +72,11 @@
             </div>
             <!-- Chat window -->
             <div id="chat-window">
-              <div class="message sent">
-                <p>messaggio inviato *** rendere dinamico***</p>
+              <div class="message received" v-for="(message, index) in contacts_list[0].messages_list">
+                <p>{{message.message}}</p>
                 <small>***time***</small>
               </div>
-              <div class="message received" v-for="(message, index) in contacts_list[0].messages_list">
+              <div class="message sent" v-for="(message, index) in user.messages_list">
                 <p>{{message.message}}</p>
                 <small>***time***</small>
               </div>
