@@ -2,7 +2,7 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>Boolzapp</title>
+    <title>Boolzapp Dark Mode</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@200;300;400;600;700;900&display=swap" rel="stylesheet">
@@ -17,7 +17,10 @@
           <!-- Aside (left side) -->
           <aside>
             <div class="user">
-              <img src="img/ratman.jpg" alt="user icon">
+              <div class="user-info">
+                <img :src="user.avatar" :alt="user.name + ' avatar'">
+                <h3>{{user.name}}</h3>
+              </div>
               <div class="aside-icons">
                 <i class="fas fa-circle-notch"></i>
                 <i class="fas fa-comment-alt"></i>
@@ -40,13 +43,13 @@
               <ul id="contacts-list">
                 <li v-for="(contact, index) in contacts_list">
                   <div class="contact-info">
-                    <img :src="contact.avatar" :alt="contact.name">
+                    <img :src="contact.avatar" :alt="contact.name + ' avatar'">
                     <div class="name-and-preview">
                       <h3>{{contact.name}}</h3>
                       <small>{{contact.messages_list[0].message}}</small>
                     </div>
                   </div>
-                  <span class="time">21.05</span>
+                  <span class="time">***time***</span>
                 </li>
               </ul>
             </div>
@@ -55,10 +58,10 @@
           <main>
             <div id="main-top">
               <div class="current-contact">
-                <img src="img/camus.jpg" alt="avatar contatto corrente">
-                <div class="current-contact-info">
-                  <h3>Name</h3>
-                  <small>Ultimo accesso</small>
+                <img :src="contacts_list[0].avatar" :alt="contacts_list[0].name + ' avatar'">
+                <div class="name-and-preview">
+                  <h3>{{contacts_list[0].name}}</h3>
+                  <small>Ultimo accesso ***rendere dinamico***</small>
                 </div>
               </div>
               <div class="main-icons">
@@ -70,13 +73,12 @@
             <!-- Chat window -->
             <div id="chat-window">
               <div class="message sent">
-                Some text sent
+                <p>messaggio inviato *** rendere dinamico***</p>
+                <small>***time***</small>
               </div>
-              <div class="message received">
-                Some text received
-              </div>
-              <div class="message sent">
-                Some text sent
+              <div class="message received" v-for="(message, index) in contacts_list[0].messages_list">
+                <p>{{message.message}}</p>
+                <small>***time***</small>
               </div>
             </div>
             <div id="main-bottom">
