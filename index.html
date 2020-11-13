@@ -72,13 +72,7 @@
             </div>
             <!-- Chat window -->
             <div id="chat-window">
-              <!-- RECEIVED -->
-              <div class="message" :class="(message.status === 'sent') ? 'sent' : 'received'" v-for="(message, index) in contacts_list[index_chat].messages_list">
-                <p>{{message.message}}</p>
-                <small>{{message.date}}</small>
-              </div>
-              <!-- SENT -->
-              <div class="message" :class="(message.status === 'sent') ? 'sent' : 'received'" v-for="(message, index) in user.messages_list">
+              <div class="message" :class="message.status" v-for="(message, index) in contacts_list[index_chat].messages_list">
                 <p>{{message.message}}</p>
                 <small>{{message.date}}</small>
               </div>

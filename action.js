@@ -1,41 +1,21 @@
+function getRndInteger(min, max) {
+  return Math.floor(Math.random() * (max - min + 1) ) + min;
+};
+
 let app = new Vue({
   el: '#root',
   data: {
-    index_chat: 0,
+    index_chat: getRndInteger(0, 7), // 7 = contacts_list.length - 1 (come si accede a questa variabile????)
     user: {
       name: 'Rat-Man',
       avatar: 'img/ratman.jpg',
-      messages_list: [
-        {
-          date: '***data da rendere dinamica***',
-          message: 'Non esistono ostacoli troppo grossi, signore. Esistono solo motivazioni troppo piccole.',
-          status: 'sent',
-        },
-        {
-          date: '***data da rendere dinamica***',
-          message: 'Piccettino dice che quando le cose mi vanno male è perché vengo punito per il modo in cui mi sbarazzo dei testimoni di Geova quando suonano alla mia porta.',
-          status: 'sent',
-        },
-        {
-          date: '***data da rendere dinamica***',
-          message: 'Ma il problema non è tanto la fuga dei cervelli, quanto il fatto che i corpi restano qui.',
-          status: 'sent',
-        },
-        {
-          date: '***data da rendere dinamica***',
-          message: 'SCIENZA! Spiegare come funziona il mondo che ci circonda, in maniera che gli altri non possano capire!',
-          status: 'sent',
-        },
-        {
-          date: '***data da rendere dinamica***',
-          message: 'Siamo molto simili... amiamo il pericolo, il rischio... viviamo liberi dalle regole e dalle leggi dei comuni mortali... Aspetta! Non posso girare a sinistra è contromano!',
-          status: 'sent',
-        },
-        {
-          date: '***data da rendere dinamica***',
-          message: 'Avverto il tuo stupore, il tuo smarrimento... l\'angoscia della tua mente che varca in un attimo lo spazio e il tempo, portandoti a confronto con ciò che diverrai... Anvedi che panza!',
-          status: 'sent',
-        },
+      messages_sent: [
+        'Non esistono ostacoli troppo grossi, signore. Esistono solo motivazioni troppo piccole.',
+        'Piccettino dice che quando le cose mi vanno male è perché vengo punito per il modo in cui mi sbarazzo dei testimoni di Geova quando suonano alla mia porta.',
+        'Ma il problema non è tanto la fuga dei cervelli, quanto il fatto che i corpi restano qui.',
+        'SCIENZA! Spiegare come funziona il mondo che ci circonda, in maniera che gli altri non possano capire!',
+        'Siamo molto simili... amiamo il pericolo, il rischio... viviamo liberi dalle regole e dalle leggi dei comuni mortali... Aspetta! Non posso girare a sinistra è contromano!',
+        'Avverto il tuo stupore, il tuo smarrimento... l\'angoscia della tua mente che varca in un attimo lo spazio e il tempo, portandoti a confronto con ciò che diverrai... Anvedi che panza!',
       ]
     },
     contacts_list: [
@@ -51,8 +31,20 @@ let app = new Vue({
           },
           {
             date: '***data da rendere dinamica***',
+            message: 'PROVA',
+            // message: this.user.messages_sent[0],
+            status: 'sent',
+          },
+          {
+            date: '***data da rendere dinamica***',
             message: 'There is nothing permanent except change.',
             status: 'received',
+          },
+          {
+            date: '***data da rendere dinamica***',
+            message: 'PROVA',
+            // message: this.user.messages_list[0].message,
+            status: 'sent',
           },
         ],
       },
@@ -68,8 +60,20 @@ let app = new Vue({
           },
           {
             date: '***data da rendere dinamica***',
+            message: 'PROVA',
+            // message: this.user.messages_list[0].message,
+            status: 'sent',
+          },
+          {
+            date: '***data da rendere dinamica***',
             message: 'And those who were seen dancing were thought to be insane by those who could not hear the music.',
             status: 'received',
+          },
+          {
+            date: '***data da rendere dinamica***',
+            message: 'PROVA',
+            // message: this.user.messages_list[0].message,
+            status: 'sent',
           },
           {
             date: '***data da rendere dinamica***',
@@ -90,8 +94,20 @@ let app = new Vue({
           },
           {
             date: '***data da rendere dinamica***',
+            message: 'PROVA',
+            // message: this.user.messages_list[0].message,
+            status: 'sent',
+          },
+          {
+            date: '***data da rendere dinamica***',
             message: 'The only way to deal with an unfree world is to become so absolutely free that your very existence is an act of rebellion.',
             status: 'received',
+          },
+          {
+            date: '***data da rendere dinamica***',
+            message: 'PROVA',
+            // message: this.user.messages_list[0].message,
+            status: 'sent',
           },
         ],
       },
@@ -107,13 +123,31 @@ let app = new Vue({
           },
           {
             date: '***data da rendere dinamica***',
+            message: 'PROVA',
+            // message: this.user.messages_list[0].message,
+            status: 'sent',
+          },
+          {
+            date: '***data da rendere dinamica***',
             message: 'Life is not a problem to be solved, but a reality to be experienced.',
             status: 'received',
           },
           {
             date: '***data da rendere dinamica***',
+            message: 'PROVA',
+            // message: this.user.messages_list[0].message,
+            status: 'sent',
+          },
+          {
+            date: '***data da rendere dinamica***',
             message: 'What labels me, negates me.',
             status: 'received',
+          },
+          {
+            date: '***data da rendere dinamica***',
+            message: 'PROVA',
+            // message: this.user.messages_list[0].message,
+            status: 'sent',
           },
           {
             date: '***data da rendere dinamica***',
@@ -134,8 +168,20 @@ let app = new Vue({
           },
           {
             date: '***data da rendere dinamica***',
+            message: 'PROVA',
+            // message: this.user.messages_list[0].message,
+            status: 'sent',
+          },
+          {
+            date: '***data da rendere dinamica***',
             message: 'Courage is knowing what not to fear.',
             status: 'received',
+          },
+          {
+            date: '***data da rendere dinamica***',
+            message: 'PROVA',
+            // message: this.user.messages_list[0].message,
+            status: 'sent',
           },
         ],
       },
@@ -151,8 +197,20 @@ let app = new Vue({
           },
           {
             date: '***data da rendere dinamica***',
+            message: 'PROVA',
+            // message: this.user.messages_list[0].message,
+            status: 'sent',
+          },
+          {
+            date: '***data da rendere dinamica***',
             message: 'There is only one good, knowledge, and one evil, ignorance.',
             status: 'received',
+          },
+          {
+            date: '***data da rendere dinamica***',
+            message: 'PROVA',
+            // message: this.user.messages_list[0].message,
+            status: 'sent',
           },
           {
             date: '***data da rendere dinamica***',
@@ -173,13 +231,31 @@ let app = new Vue({
           },
           {
             date: '***data da rendere dinamica***',
+            message: 'PROVA',
+            // message: this.user.messages_list[0].message,
+            status: 'sent',
+          },
+          {
+            date: '***data da rendere dinamica***',
             message: 'The more clearly you understand yourself and your emotions, the more you become a lover of what is.',
             status: 'received',
           },
           {
             date: '***data da rendere dinamica***',
+            message: 'PROVA',
+            // message: this.user.messages_list[0].message,
+            status: 'sent',
+          },
+          {
+            date: '***data da rendere dinamica***',
             message: 'The highest activity a human being can attain is learning for understanding, because to understand is to be free.',
             status: 'received',
+          },
+          {
+            date: '***data da rendere dinamica***',
+            message: 'PROVA',
+            // message: this.user.messages_list[0].message,
+            status: 'sent',
           },
           {
             date: '***data da rendere dinamica***',
@@ -200,15 +276,27 @@ let app = new Vue({
           },
           {
             date: '***data da rendere dinamica***',
+            message: 'PROVA',
+            // message: this.user.messages_list[0].message,
+            status: 'sent',
+          },
+          {
+            date: '***data da rendere dinamica***',
             message: 'We are not rich by what we possess but by what we can do without.',
             status: 'received',
           },
+          {
+            date: '***data da rendere dinamica***',
+            message: 'PROVA',
+            // message: this.user.messages_list[0].message,
+            status: 'sent',
+          },
         ],
       },
-    ]
+    ] // Closing "contacts list"
   },  // Closing data
   methods: {
-    showChat: function(index_contact) {
+    showChat(index_contact) {
       this.index_chat = index_contact;
     },
   },  // Closing methods
