@@ -41,7 +41,7 @@
             <!-- Contacts list -->
             <div class="contacts-list-container">
               <ul id="contacts-list">
-                <li v-for="(contact, index) in contacts_list">
+                <li @click="showChat(index)" v-for="(contact, index) in contacts_list">
                   <div class="contact-info">
                     <img :src="contact.avatar" :alt="contact.name + ' avatar'">
                     <div class="name-and-preview">
@@ -58,9 +58,9 @@
           <main>
             <div id="main-top">
               <div class="current-contact">
-                <img :src="contacts_list[0].avatar" :alt="contacts_list[0].name + ' avatar'">
+                <img :src="contacts_list[index_chat].avatar" :alt="contacts_list[index_chat].name + ' avatar'">
                 <div class="name-and-preview">
-                  <h3>{{contacts_list[0].name}}</h3>
+                  <h3>{{contacts_list[index_chat].name}}</h3>
                   <small>Ultimo accesso ***rendere dinamico***</small>
                 </div>
               </div>
@@ -72,6 +72,11 @@
             </div>
             <!-- Chat window -->
             <div id="chat-window">
+              <div class="message" :class="(message.status === 'sent') ? 'sent' : 'received'" v-for="(message, index) in contacts_list[index_chat].messages_list">
+                <p>{{message.message}}</p>
+                <small>{{message.date}}</small>
+              </div>
+              <!--
               <div class="message received" v-for="(message, index) in contacts_list[0].messages_list">
                 <p>{{message.message}}</p>
                 <small>***time***</small>
@@ -80,6 +85,7 @@
                 <p>{{message.message}}</p>
                 <small>***time***</small>
               </div>
+            -->
             </div>
             <div id="main-bottom">
               <i class="far fa-smile"></i>
