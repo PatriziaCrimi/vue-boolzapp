@@ -37,6 +37,7 @@ let app = new Vue({
   el: '#root',
   data: {
     text_message: '',
+    answer_waiting_time: 1000, // millisencods (1s)
     active_contact: getRndInteger(0, contacts_quantity), // contacts_quantity = 7 = contacts_list.length - 1) ma come faccio ad accedere alla variabile "contacts_list" per usarla per assegnar eun valore a questa variabile qui??
     user: {
       name: 'Rat-Man',
@@ -302,21 +303,49 @@ let app = new Vue({
     ], // Closing "contacts list"
   },  // Closing data
   methods: {
+    // Showing the active contact chat
     showChat(index_contact) {
       this.active_contact = index_contact;
     },
+    // Scrolling the chat window to the bottom to show the last message
+    scrollChat() {
+      let chat_window = this.$el.querySelector("#chat-window");
+      chat_window.scrollTop = chat_window.scrollHeight;
+    },
     sendMessage() {
-      // Creating the new message (object) to be added to the messages_list array
-      let new_message = {
+      // Creating the new sent message (object) to be added to the messages_list array
+      let new_sent_message = {
         date: '***data da rendere dinamica***',
         message: this.text_message,
         status: 'sent',
       };
-      // Adding the new message (object) to the messages_list array of the active contact
-      this.contacts_list[this.active_contact].messages_list.push(new_message);
+      // Adding the new sent message (object) to the messages_list array of the active contact
+      this.contacts_list[this.active_contact].messages_list.push(new_sent_message);
       // Scrolling the chat window to the bottom to show the last message
-      let chat_window = this.$el.querySelector("#chat-window");
-      chat_window.scrollTop = chat_window.scrollHeight;
+      this.scrollChat();
+      // Timing function fot the auto-reply
+      setTimeout(this.receiveMessage, this.answer_waiting_time);
+    },
+    shortestQuotesList() {
+      let shortest_list_length = 100;
+      this.contacts_list.forEach((contact) => {
+        if(contact.messages_list.length < shortest_list_length) {
+          shortest_list_length = contact.messages_list.length;
+        };
+      });
+      return shortest_list_length - 1;
+    },
+    receiveMessage() {
+      // Creating the new received message (object) to be added to the messages_list array
+      let new_received_message = {
+        date: '***data da rendere dinamica***',
+        message: this.contacts_list[getRndInteger(0, contacts_quantity)].messages_list[getRndInteger(0, this.shortestQuotesList())].message,
+        status: 'received',
+      };
+      // Adding the new received message (object) to the messages_list array of the active contact
+      this.contacts_list[this.active_contact].messages_list.push(new_received_message);
+      // Scrolling the chat window to the bottom to show the last message
+      this.scrollChat();
     },
   },  // Closing methods
 });
