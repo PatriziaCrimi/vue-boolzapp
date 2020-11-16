@@ -36,6 +36,7 @@ const getRndQuote = (quotes_list, first) => {
 let app = new Vue({
   el: '#root',
   data: {
+    name_search: '',
     text_message: '',
     answer_waiting_time: 1000, // millisencods (1s)
     active_contact: getRndInteger(0, contacts_quantity), // contacts_quantity = 7 = contacts_list.length - 1) ma come faccio ad accedere alla variabile "contacts_list" per usarla per assegnar eun valore a questa variabile qui??
@@ -346,6 +347,27 @@ let app = new Vue({
       this.contacts_list[this.active_contact].messages_list.push(new_received_message);
       // Scrolling the chat window to the bottom to show the last message
       this.scrollChat();
+    },
+    searchContact() {
+      // Scrolling the array of contacts (array of objects)
+      this.contacts_list.forEach((contact) => {
+        // Transforming both current contact name and the input name to lowercase
+        let name_lowercase = contact.name.toLowerCase();
+        let name_searched_lowercase = this.name_search.toLowerCase();
+        // Checking if the input characters match the current contact
+        if(name_lowercase.includes(name_searched_lowercase)) {
+          // Checking if the order of the characters is correct
+          if(name_lowercase.indexOf(name_searched_lowercase) === 0) {
+          console.log('il contatto cercato è presente: ' + contact.name);
+          console.log('ho cercato: ' + this.name_search);
+          // Assigning "true" to the current contact "visible" property to make it visible
+          contact.visible = true;
+          };
+        } else {
+          // Assigning "false" to the current contact "visible" property to make it NOT visible
+          contact.visible = false;
+        };
+      });
     },
   },  // Closing methods
 });
