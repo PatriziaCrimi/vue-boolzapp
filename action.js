@@ -36,7 +36,8 @@ const getRndQuote = (quotes_list, first) => {
 let app = new Vue({
   el: '#root',
   data: {
-    index_chat: getRndInteger(0, contacts_quantity), // contacts_quantity = 7 = contacts_list.length - 1) ma come faccio ad accedere alla variabile "contacts_list" per usarla per assegnar eun valore a questa variabile qui??
+    text_message: '',
+    active_contact: getRndInteger(0, contacts_quantity), // contacts_quantity = 7 = contacts_list.length - 1) ma come faccio ad accedere alla variabile "contacts_list" per usarla per assegnar eun valore a questa variabile qui??
     user: {
       name: 'Rat-Man',
       avatar: 'img/ratman.jpg',
@@ -302,7 +303,20 @@ let app = new Vue({
   },  // Closing data
   methods: {
     showChat(index_contact) {
-      this.index_chat = index_contact;
+      this.active_contact = index_contact;
+    },
+    sendMessage() {
+      // Creating the new message (object) to be added to the messages_list array
+      let new_message = {
+        date: '***data da rendere dinamica***',
+        message: this.text_message,
+        status: 'sent',
+      };
+      // Adding the new message (object) to the messages_list array of the active contact
+      this.contacts_list[this.active_contact].messages_list.push(new_message);
+      // Scrolling the chat window to the bottom to show the last message
+      let chat_window = this.$el.querySelector("#chat-window");
+      chat_window.scrollTop = chat_window.scrollHeight;
     },
   },  // Closing methods
 });

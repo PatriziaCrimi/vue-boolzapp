@@ -37,6 +37,10 @@ img {
   border-radius: 50%;
 }
 
+label {
+  display: none;
+}
+
 input {
   padding: 0 15px;
   -webkit-box-shadow: inset 0px 0px 7px 0px rgba(132,132,132,1);
