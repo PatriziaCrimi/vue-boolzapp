@@ -51,24 +51,19 @@ let app = new Vue({
         visible: true,
         messages_list: [
           {
-            date: '***data da rendere dinamica***',
+            date: '10/01/2020 15:30:55',
             message: 'No man ever steps in the same river twice, for it\'s not the same river and he\'s not the same man.',
             status: 'received',
           },
           {
-            date: '***data da rendere dinamica***',
+            date: '10/01/2020 15:50:00',
             message: getRndQuote(user_messages_list, 0),
             status: 'sent',
           },
           {
-            date: '***data da rendere dinamica***',
+            date: '10/01/2020 16:15:22',
             message: 'There is nothing permanent except change.',
             status: 'received',
-          },
-          {
-            date: '***data da rendere dinamica***',
-            message: getRndQuote(user_messages_list, 0),
-            status: 'sent',
           },
         ],
       },
@@ -78,27 +73,27 @@ let app = new Vue({
         visible: true,
         messages_list: [
           {
-            date: '***data da rendere dinamica***',
+            date: '20/03/2020 16:30:00',
             message: 'Without music, life would be a mistake.',
             status: 'received',
           },
           {
-            date: '***data da rendere dinamica***',
+            date: '20/03/2020 16:30:55',
             message: getRndQuote(user_messages_list, 0),
             status: 'sent',
           },
           {
-            date: '***data da rendere dinamica***',
+            date: '20/03/2020 16:35:00',
             message: 'And those who were seen dancing were thought to be insane by those who could not hear the music.',
             status: 'received',
           },
           {
-            date: '***data da rendere dinamica***',
+            date: '20/03/2020 19:27:04',
             message: getRndQuote(user_messages_list, 0),
             status: 'sent',
           },
           {
-            date: '***data da rendere dinamica***',
+            date: '20/03/2020 20:38:15',
             message: 'You must have chaos within you to give birth to a dancing star.',
             status: 'received',
           },
@@ -110,24 +105,19 @@ let app = new Vue({
         visible: true,
         messages_list: [
           {
-            date: '***data da rendere dinamica***',
+            date: '28/03/2020 10:10:40',
             message: 'You will never be happy if you continue to search for what happiness consists of. You will never live if you are looking for the meaning of life.',
             status: 'received',
           },
           {
-            date: '***data da rendere dinamica***',
+            date: '28/03/2020 10:20:10',
             message: getRndQuote(user_messages_list, 0),
             status: 'sent',
           },
           {
-            date: '***data da rendere dinamica***',
+            date: '28/03/2020 18:40:22',
             message: 'The only way to deal with an unfree world is to become so absolutely free that your very existence is an act of rebellion.',
             status: 'received',
-          },
-          {
-            date: '***data da rendere dinamica***',
-            message: getRndQuote(user_messages_list, 0),
-            status: 'sent',
           },
         ],
       },
@@ -137,37 +127,37 @@ let app = new Vue({
         visible: true,
         messages_list: [
           {
-            date: '***data da rendere dinamica***',
+            date: '10/01/2020 15:30:55',
             message: 'There are two ways to be fooled. One is to believe what isn\'t true, the other is to refuse to accept what is true.',
             status: 'received',
           },
           {
-            date: '***data da rendere dinamica***',
+            date: '10/01/2020 15:50:00',
             message: getRndQuote(user_messages_list, 0),
             status: 'sent',
           },
           {
-            date: '***data da rendere dinamica***',
+            date: '10/01/2020 16:53:09',
             message: 'Life is not a problem to be solved, but a reality to be experienced.',
             status: 'received',
           },
           {
-            date: '***data da rendere dinamica***',
+            date: '10/01/2020 18:41:23',
             message: getRndQuote(user_messages_list, 0),
             status: 'sent',
           },
           {
-            date: '***data da rendere dinamica***',
+            date: '10/01/2020 19:55:00',
             message: 'What labels me, negates me.',
             status: 'received',
           },
           {
-            date: '***data da rendere dinamica***',
+            date: '10/01/2020 20:15:24',
             message: getRndQuote(user_messages_list, 0),
             status: 'sent',
           },
           {
-            date: '***data da rendere dinamica***',
+            date: '10/01/2020 22:31:07',
             message: 'Life can only be understood backwards; but it must be lived forwards.',
             status: 'received',
           },
@@ -179,22 +169,22 @@ let app = new Vue({
         visible: true,
         messages_list: [
           {
-            date: '***data da rendere dinamica***',
+            date: '07/06/2020 10:50:00',
             message: 'Wise men speak because they have something to say; fools because they have to say something.',
             status: 'received',
           },
           {
-            date: '***data da rendere dinamica***',
+            date: '07/06/2020 11:45:14',
             message: getRndQuote(user_messages_list, 0),
             status: 'sent',
           },
           {
-            date: '***data da rendere dinamica***',
+            date: '07/06/2020 12:10:04',
             message: 'Courage is knowing what not to fear.',
             status: 'received',
           },
           {
-            date: '***data da rendere dinamica***',
+            date: '07/06/2020 14:30:00',
             message: getRndQuote(user_messages_list, 0),
             status: 'sent',
           },
@@ -206,27 +196,27 @@ let app = new Vue({
         visible: true,
         messages_list: [
           {
-            date: '***data da rendere dinamica***',
+            date: '15/07/2020 09:43:07',
             message: 'By all means marry; if you get a good wife, you’ll become happy; if you get a bad one, you’ll become a philosopher.',
             status: 'received',
           },
           {
-            date: '***data da rendere dinamica***',
+            date: '15/07/2020 10:45:12',
             message: getRndQuote(user_messages_list, 0),
             status: 'sent',
           },
           {
-            date: '***data da rendere dinamica***',
+            date: '15/07/2020 11:58:03',
             message: 'There is only one good, knowledge, and one evil, ignorance.',
             status: 'received',
           },
           {
-            date: '***data da rendere dinamica***',
+            date: '15/07/2020 13:40:01',
             message: getRndQuote(user_messages_list, 0),
             status: 'sent',
           },
           {
-            date: '***data da rendere dinamica***',
+            date: '15/07/2020 15:25:32',
             message: 'The only true wisdom is in knowing you know nothing.',
             status: 'received',
           },
@@ -238,37 +228,37 @@ let app = new Vue({
         visible: true,
         messages_list: [
           {
-            date: '***data da rendere dinamica***',
+            date: '19/08/2020 11:43:23',
             message: 'If you want the present to be different from the past, study the past.',
             status: 'received',
           },
           {
-            date: '***data da rendere dinamica***',
+            date: '19/08/2020 11:50:34',
             message: getRndQuote(user_messages_list, 0),
             status: 'sent',
           },
           {
-            date: '***data da rendere dinamica***',
+            date: '19/08/2020 14:18:09',
             message: 'The more clearly you understand yourself and your emotions, the more you become a lover of what is.',
             status: 'received',
           },
           {
-            date: '***data da rendere dinamica***',
+            date: '19/08/2020 16:33:20',
             message: getRndQuote(user_messages_list, 0),
             status: 'sent',
           },
           {
-            date: '***data da rendere dinamica***',
+            date: '19/08/2020 17:23:21',
             message: 'The highest activity a human being can attain is learning for understanding, because to understand is to be free.',
             status: 'received',
           },
           {
-            date: '***data da rendere dinamica***',
+            date: '19/08/2020 19:43:00',
             message: getRndQuote(user_messages_list, 0),
             status: 'sent',
           },
           {
-            date: '***data da rendere dinamica***',
+            date: '19/08/2020 20:28:16',
             message: 'Be not astonished at new ideas; for it is well known to you that a thing does not therefore cease to be true because it is not accepted by many.',
             status: 'received',
           },
@@ -280,22 +270,22 @@ let app = new Vue({
         visible: true,
         messages_list: [
           {
-            date: '***data da rendere dinamica***',
+            date: '25/10/2020 15:58:02',
             message: 'Space and time are the framework within which the mind is constrained to construct its experience of reality.',
             status: 'received',
           },
           {
-            date: '***data da rendere dinamica***',
+            date: '25/10/2020 16:02:40',
             message: getRndQuote(user_messages_list, 0),
             status: 'sent',
           },
           {
-            date: '***data da rendere dinamica***',
+            date: '25/10/2020 17:41:18',
             message: 'We are not rich by what we possess but by what we can do without.',
             status: 'received',
           },
           {
-            date: '***data da rendere dinamica***',
+            date: '25/10/2020 19:00:30',
             message: getRndQuote(user_messages_list, 0),
             status: 'sent',
           },
@@ -304,19 +294,46 @@ let app = new Vue({
     ], // Closing "contacts list"
   },  // Closing data
   methods: {
-    // Showing the active contact chat
-    showChat(index_contact) {
-      this.active_contact = index_contact;
+    LastMessageIndex(contact) {
+      return contact.messages_list.length -1;
     },
     // Scrolling the chat window to the bottom to show the last message
     scrollChat() {
       let chat_window = this.$el.querySelector("#chat-window");
       chat_window.scrollTop = chat_window.scrollHeight;
     },
+    newFullDate() {
+      // Getting current time in HH:MM:SS format
+      let new_time = new Date().toJSON().slice(11,19);
+      // Getting current date in YYYY-MM-DD format
+      let new_date = new Date().toJSON().slice(0,10).replace(/-/g,'/');
+      // Slicing the string of the date into Year, Month and Day
+      let new_year = new_date.slice(0, 4);
+      let new_month = new_date.slice(5, 7);
+      let new_day = new_date.slice(8, 10);
+      // Creating the current date in DD-MM-YYYY HH:MM:SS format
+      return new_full_date = new_day + '/' + new_month + '/' + new_year + ' ' + new_time;
+    },
+    getTime(full_date) {
+      return full_date.slice(11, 16);
+    },
+    // Showing last message time in the aside contacts list
+    showTime(current_contact) {
+      return this.getTime(current_contact.messages_list[this.LastMessageIndex(current_contact)].date);
+    },
+    // Showing only last message in the aside contacts list
+    showLastMessage(current_contact) {
+      return current_contact.messages_list[this.LastMessageIndex(current_contact)].message;
+    },
+    // Showing the active contact chat in the chat-window
+    showChat(index_contact) {
+      this.active_contact = index_contact;
+      this.scrollChat();
+    },
     sendMessage() {
       // Creating the new sent message (object) to be added to the messages_list array
       let new_sent_message = {
-        date: '***data da rendere dinamica***',
+        date: this.newFullDate(),
         message: this.text_message,
         status: 'sent',
       };
@@ -327,6 +344,7 @@ let app = new Vue({
       // Timing function fot the auto-reply
       setTimeout(this.receiveMessage, this.answer_waiting_time);
     },
+    // Checking the shortest list of quotes to use it as a parameter when generating random message (quote) in the auto-reply
     shortestQuotesList() {
       let shortest_list_length = 100;
       this.contacts_list.forEach((contact) => {
@@ -336,10 +354,11 @@ let app = new Vue({
       });
       return shortest_list_length - 1;
     },
+    // Generating random message for the auto-reply
     receiveMessage() {
       // Creating the new received message (object) to be added to the messages_list array
       let new_received_message = {
-        date: '***data da rendere dinamica***',
+        date: this.newFullDate(),
         message: this.contacts_list[getRndInteger(0, contacts_quantity)].messages_list[getRndInteger(0, this.shortestQuotesList())].message,
         status: 'received',
       };

@@ -47,10 +47,10 @@
                     <img :src="contact.avatar" :alt="contact.name + ' avatar'">
                     <div class="name-and-preview">
                       <h3>{{contact.name}}</h3>
-                      <small>{{contact.messages_list[0].message}}</small>
+                      <small>{{showLastMessage(contact)}}</small>
                     </div>
                   </div>
-                  <span class="time">***time***</span>
+                  <span class="time">{{showTime(contact)}}</span>
                 </li>
               </ul>
             </div>
@@ -62,7 +62,7 @@
                 <img :src="contacts_list[active_contact].avatar" :alt="contacts_list[active_contact].name + ' avatar'">
                 <div class="name-and-preview">
                   <h3>{{contacts_list[active_contact].name}}</h3>
-                  <small>Ultimo accesso ***rendere dinamico***</small>
+                  <small>Ultimo accesso oggi alle {{getTime(newFullDate())}}</small>
                 </div>
               </div>
               <div class="main-icons">
@@ -75,7 +75,7 @@
             <div id="chat-window">
               <div class="message" :class="message_object.status" v-for="(message_object, index) in contacts_list[active_contact].messages_list">
                 <p>{{message_object.message}}</p>
-                <small>{{message_object.date}}</small>
+                <small>{{getTime(message_object.date)}}</small>
               </div>
             </div>
             <div id="main-bottom">
