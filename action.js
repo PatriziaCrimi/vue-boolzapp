@@ -354,15 +354,22 @@ let app = new Vue({
         // Transforming both current contact name and the input name to lowercase
         let name_lowercase = contact.name.toLowerCase();
         let name_searched_lowercase = this.name_search.toLowerCase();
-        // Checking if the input characters match the current contact
-        if(name_lowercase.includes(name_searched_lowercase)) {
-          // Checking if the order of the characters is correct
-          if(name_lowercase.indexOf(name_searched_lowercase) === 0) {
-          console.log('il contatto cercato è presente: ' + contact.name);
-          console.log('ho cercato: ' + this.name_search);
+        // Splitting the full name into first name, surname and any other parts
+        let full_name_splitted = name_lowercase.split(' '); // creating an array
+        // Scrolling the full name in all its parts (as an array)
+        let name_matched = [];
+        full_name_splitted.forEach((name_part) => {
+          // Checking if the input characters match the current contact full name
+          if(name_part.includes(name_searched_lowercase) &&
+          // Checking if the order of the characters is correct (starting from the beginning)
+          name_part.indexOf(name_searched_lowercase) === 0) {
+            name_matched.push(name_part);
+          }
+        });
+        // If there is at least one element in the array of "name matched" it means that at least one part of the name matches the search (either first name or surname, or any others)
+        if(name_matched.length > 0) {
           // Assigning "true" to the current contact "visible" property to make it visible
           contact.visible = true;
-          };
         } else {
           // Assigning "false" to the current contact "visible" property to make it NOT visible
           contact.visible = false;
