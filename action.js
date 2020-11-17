@@ -346,8 +346,8 @@ let app = new Vue({
       this.active_contact = index_contact;
       this.scrollChat();
       this.emptySearch();
-      // this.showContacts(); // BUG TO BE FIXED
-      // this.autoscrollActiveContact(); // BUG TO BE FIXED
+      this.showContacts();
+      // this.autoscrollActiveContact(); BUG TO BE FIXED
     },
     showDropdown(clicked_message) {
       this.index_dropdown = clicked_message;
@@ -357,8 +357,12 @@ let app = new Vue({
         this.dropdown_display = true;
       }
     },
-    deleteMessage(clicked_message, index_message) {
+    deleteMessage(index_message) {
+      Vue.delete(this.contacts_list[this.active_contact].messages_list, index_message);
+      /*
+      // --------------- OPTION 2  WITH "SPLICE" ---------------
       this.contacts_list[this.active_contact].messages_list.splice(index_message, 1);
+      */
     },
     sendMessage() {
       // Creating the new sent message (object) to be added to the messages_list array
@@ -411,7 +415,7 @@ let app = new Vue({
           contact.visible = false;
         }
         /*
-        // THIS CODE IS NECESSARY IF THE SEARCH MUST BE DONE CONSIDERING ONLY THE INITIALS OF NAME AND/OR SURNAME
+        // ------------ THIS CODE IS NECESSARY IF THE SEARCH MUST BE DONE CONSIDERING ONLY THE INITIALS OF NAME AND/OR SURNAME ------------
         // Splitting the full name into first name, surname and any other parts
         let full_name_splitted = name_lowercase.split(' '); // creating an array
         // Scrolling the full name in all its parts (as an array)
@@ -442,29 +446,19 @@ let app = new Vue({
     autoscrollActiveContact() {
       // Getting DOM elements from the <ul> <li> list of contacts
       let contacts_window = document.getElementsByClassName('contacts-list-container')[0];
-      let active_contact = document.getElementsByClassName('active')[0];
       let li_contacts_array = document.getElementsByClassName('contacts');
-      let active_contact_position = 0;  // the height to be given when scrolling
-      let current_contact_class = 0;
-      let active_contact_index;
-      let i = 0;
-      // Summing the heights of the <li> until the active contact is found
-      while (current_contact_class !== 'contacts active') {
-        current_contact_class = li_contacts_array[i].className;
-        if(current_contact_class !== 'contacts active') {
-          active_contact_position += li_contacts_array[i].offsetHeight;
-        } else {
-          active_contact_index = i;
-        }
-        i++;
-      };
-      // Bug too be fixed when the last <li> element is active (not fully shown)
-      if (active_contact_index === li_contacts_array.length - 1) {
-        contacts_window.scrollTop = contacts_window.scrollHeight; // doesn't work correctly
-        console.log(active_contact_index);
+      let active_contact_height = 0;
+      // Summing the heights of the <li> that preced the active contact
+      for (let i = 0; i < this.active_contact; i++) {
+        active_contact_height += li_contacts_array[i].offsetHeight;
+      }
+      // If it is the last contact just scrollHeight
+      if (this.active_contact === li_contacts_array.length - 1) {
+        contacts_window.scrollTop = contacts_window.scrollHeight;
+        console.log(this.active_contact);
       } else {
         // Scrolling the contacts window to the position/height of the active contact
-        contacts_window.scrollTop = active_contact_position;
+        contacts_window.scrollTop = active_contact_height;
       };
     },
   },  // Closing methods

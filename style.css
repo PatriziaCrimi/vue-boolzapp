@@ -277,9 +277,6 @@ main #chat-window {
   z-index: 1;
 }
 
-#chat-window .dropdown-menu {
-}
-
 #chat-window .dropdown-menu > li {
   padding: 10px 0;
   cursor: pointer;
