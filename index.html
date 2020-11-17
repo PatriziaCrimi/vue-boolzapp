@@ -35,9 +35,9 @@
               </div>
             </div>
             <div class="search">
-              <i @click="searchContact()" class="fa fa-search" aria-hidden="true"></i>
+              <i @click="searchAndEmpty()" class="fa fa-search" aria-hidden="true"></i>
               <label for="search-bar"></label>
-              <input @keyup="searchContact()" v-model="name_search" id="search-bar" type="text" placeholder="Cerca o inizia una nuova chat">
+              <input @keyup="searchContact()" @keyup.enter="emptySearch()" v-model="name_search" id="search-bar" type="text" placeholder="Cerca o inizia una nuova chat">
             </div>
             <!-- Contacts list -->
             <div class="contacts-list-container">

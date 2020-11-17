@@ -302,6 +302,10 @@ let app = new Vue({
       let chat_window = this.$el.querySelector("#chat-window");
       chat_window.scrollTop = chat_window.scrollHeight;
     },
+    emptySearch() {
+      // Emptying the input text bar
+      this.name_search = '';
+    },
     newFullDate() {
       // Getting current time in HH:MM:SS format
       let new_time = new Date().toJSON().slice(11,19);
@@ -329,6 +333,7 @@ let app = new Vue({
     showChat(index_contact) {
       this.active_contact = index_contact;
       this.scrollChat();
+      this.emptySearch();
     },
     sendMessage() {
       // Creating the new sent message (object) to be added to the messages_list array
@@ -341,6 +346,8 @@ let app = new Vue({
       this.contacts_list[this.active_contact].messages_list.push(new_sent_message);
       // Scrolling the chat window to the bottom to show the last message
       this.scrollChat();
+      // Emptying the input text bar
+      this.text_message = '';
       // Timing function fot the auto-reply
       setTimeout(this.receiveMessage, this.answer_waiting_time);
     },
@@ -394,6 +401,10 @@ let app = new Vue({
           contact.visible = false;
         };
       });
+    },
+    searchAndEmpty() {
+      this.searchContact();
+      this.emptySearch();
     },
   },  // Closing methods
 });
