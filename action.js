@@ -34,6 +34,7 @@ const getRndQuote = (quotes_list, first) => {
 let app = new Vue({
   el: '#root',
   data: {
+    dropdown_display: '',
     index_dropdown: '',
     name_search: '',
     text_message: '',
@@ -350,6 +351,11 @@ let app = new Vue({
     },
     showDropdown(clicked_message) {
       this.index_dropdown = clicked_message;
+      if(this.dropdown_display === 'active') {
+        this.dropdown_display = '';
+      } else {
+        this.dropdown_display = 'active';
+      }
     },
     sendMessage() {
       // Creating the new sent message (object) to be added to the messages_list array
