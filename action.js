@@ -384,7 +384,14 @@ let app = new Vue({
       this.contacts_list.forEach((contact) => {
         // Transforming both the current contact name and the input name to lowercase
         let name_lowercase = contact.name.toLowerCase();
-        let name_searched_lowercase = this.name_search.toLowerCase();
+        let searched_name_lowercase = this.name_search.toLowerCase();
+        if (name_lowercase.includes(searched_name_lowercase)) {
+          contact.visible = true;
+        } else {
+          contact.visible = false;
+        }
+        /*
+        // THIS CODE IS NECESSARY IF THE SEARCH MUST BE DONE CONSIDERING ONLY THE INITIALS OF NAME AND/OR SURNAME
         // Splitting the full name into first name, surname and any other parts
         let full_name_splitted = name_lowercase.split(' '); // creating an array
         // Scrolling the full name in all its parts (as an array)
@@ -405,6 +412,7 @@ let app = new Vue({
           // Assigning "false" to the current contact "visible" property to make it NOT visible
           contact.visible = false;
         };
+        */
       });
     },
     searchAndEmpty() {
