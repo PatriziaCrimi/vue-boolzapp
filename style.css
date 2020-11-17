@@ -274,11 +274,7 @@ main #chat-window {
   position: absolute;
   top: 30px;
   right: 10px;
-  display: none;
-}
-
-#chat-window .dropdown-box.active {
-  display: block;
+  z-index: 1;
 }
 
 #chat-window .dropdown-menu {

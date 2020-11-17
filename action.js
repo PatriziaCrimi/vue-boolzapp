@@ -34,7 +34,7 @@ const getRndQuote = (quotes_list, first) => {
 let app = new Vue({
   el: '#root',
   data: {
-    dropdown_display: '',
+    dropdown_display: false,
     index_dropdown: '',
     name_search: '',
     text_message: '',
@@ -351,10 +351,10 @@ let app = new Vue({
     },
     showDropdown(clicked_message) {
       this.index_dropdown = clicked_message;
-      if(this.dropdown_display === 'active') {
-        this.dropdown_display = '';
+      if(this.dropdown_display) {
+        this.dropdown_display = false;
       } else {
-        this.dropdown_display = 'active';
+        this.dropdown_display = true;
       }
     },
     sendMessage() {
