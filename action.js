@@ -1,5 +1,3 @@
-// --------------------------- CONSTANTS & VARIABLES ---------------------------
-
 let contacts_quantity = 7; // (7 = contacts_list.length - 1)
 const user_messages_list = [
   'Non esistono ostacoli troppo grossi, signore. Esistono solo motivazioni troppo piccole.',
@@ -34,6 +32,7 @@ const getRndQuote = (quotes_list, first) => {
 let app = new Vue({
   el: '#root',
   data: {
+    current_date: dayjs().format(),
     dropdown_display: false,
     index_dropdown: '',
     name_search: '',
@@ -318,6 +317,22 @@ let app = new Vue({
         contact.visible = true;
       });
     },
+    getFullDate() {
+      let full_date = this.getCurrentDate() + ' ' + this.getCurrentTime() + ':' + dayjs().second();
+      return full_date;
+    },
+    getCurrentDate() {
+      // Months are zero indexed, so it is necessary to add 1
+      let current_month = parseInt(dayjs().month()) + 1;
+      let current_date = dayjs().date() + '/' + current_month + '/' + dayjs().year();
+      return current_date;
+    },
+    getCurrentTime() {
+      let current_time = dayjs().hour() + ':' + dayjs().minute();
+      return current_time;
+    },
+    /*
+    // MANIPULATING DATES using "new Date" and JSON objects --> manipulated as strings
     newFullDate() {
       // Getting current time in HH:MM:SS format
       let new_time = new Date().toJSON().slice(11,19);
@@ -330,6 +345,7 @@ let app = new Vue({
       // Creating the current date in DD-MM-YYYY HH:MM:SS format
       return new_full_date = new_day + '/' + new_month + '/' + new_year + ' ' + new_time;
     },
+    */
     getTime(full_date) {
       return full_date.slice(11, 16);
     },
@@ -337,6 +353,7 @@ let app = new Vue({
     showTime(current_contact) {
       return this.getTime(current_contact.messages_list[this.LastMessageIndex(current_contact)].date);
     },
+
     // Showing only last message in the aside contacts list
     showLastMessage(current_contact) {
       return current_contact.messages_list[this.LastMessageIndex(current_contact)].message;
@@ -349,7 +366,7 @@ let app = new Vue({
       this.showContacts();
       // this.autoscrollActiveContact(); BUG TO BE FIXED
     },
-    showDropdown(clicked_message) {
+    toggleDropdown(clicked_message) {
       this.index_dropdown = clicked_message;
       if(this.dropdown_display) {
         this.dropdown_display = false;
@@ -357,8 +374,13 @@ let app = new Vue({
         this.dropdown_display = true;
       }
     },
+    hideDropdown() {
+      this.dropdown_display = false;
+    },
     deleteMessage(index_message) {
       Vue.delete(this.contacts_list[this.active_contact].messages_list, index_message);
+      this.hideDropdown();
+      console.log(this.current_date);
       /*
       // --------------- OPTION 2  WITH "SPLICE" ---------------
       this.contacts_list[this.active_contact].messages_list.splice(index_message, 1);
@@ -367,7 +389,7 @@ let app = new Vue({
     sendMessage() {
       // Creating the new sent message (object) to be added to the messages_list array
       let new_sent_message = {
-        date: this.newFullDate(),
+        date: this.getFullDate(),
         message: this.text_message,
         status: 'sent',
       };
@@ -394,7 +416,7 @@ let app = new Vue({
     receiveMessage() {
       // Creating the new received message (object) to be added to the messages_list array
       let new_received_message = {
-        date: this.newFullDate(),
+        date: this.getFullDate(),
         message: this.contacts_list[getRndInteger(0, contacts_quantity)].messages_list[getRndInteger(0, this.shortestQuotesList())].message,
         status: 'received',
       };

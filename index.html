@@ -8,6 +8,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@200;300;400;600;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script src="https://unpkg.com/dayjs@1.8.21/dayjs.min.js"></script>
     <link rel="stylesheet" href="style.css">
   </head>
   <body>
@@ -62,7 +63,7 @@
                 <img :src="contacts_list[active_contact].avatar" :alt="contacts_list[active_contact].name + ' avatar'">
                 <div class="name-and-preview">
                   <h3>{{contacts_list[active_contact].name}}</h3>
-                  <small>Ultimo accesso oggi alle {{getTime(newFullDate())}}</small>
+                  <small>Ultimo accesso {{getCurrentDate()}} alle {{getCurrentTime()}}</small>
                 </div>
               </div>
               <div class="main-icons">
@@ -73,10 +74,10 @@
             </div>
             <!-- Chat window -->
             <div id="chat-window">
-              <div class="message" :class="message_object.status" v-for="(message_object, index) in contacts_list[active_contact].messages_list">
+              <div class="message" v-on:mouseleave="hideDropdown" :class="message_object.status" v-for="(message_object, index) in contacts_list[active_contact].messages_list">
                 <p>{{message_object.message}}</p>
                 <small>{{getTime(message_object.date)}}</small>
-                <i @click="showDropdown(index)" class="fas fa-angle-down"></i>
+                <i @click="toggleDropdown(index)" class="fas fa-angle-down"></i>
                 <div class="dropdown-box" v-if="index === index_dropdown && dropdown_display">
                   <ul class="dropdown-menu">
                     <li>Message info</li>
