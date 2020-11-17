@@ -1,6 +1,6 @@
 // --------------------------- CONSTANTS & VARIABLES ---------------------------
 
-let contacts_quantity = 7; // (7 = contacts_list.length - 1) ma come si fa ad accedere alle variabili in "DATA" per usarle per assegnare altre variabili sempre in "data"???
+let contacts_quantity = 7; // (7 = contacts_list.length - 1)
 const user_messages_list = [
   'Non esistono ostacoli troppo grossi, signore. Esistono solo motivazioni troppo piccole.',
   'Piccettino dice che quando le cose mi vanno male è perché vengo punito per il modo in cui mi sbarazzo dei testimoni di Geova quando suonano alla mia porta.',
@@ -34,6 +34,7 @@ const getRndQuote = (quotes_list, first) => {
 let app = new Vue({
   el: '#root',
   data: {
+    index_dropdown: '',
     name_search: '',
     text_message: '',
     answer_waiting_time: 1000, // millisencods (1s)
@@ -311,6 +312,11 @@ let app = new Vue({
       // Emptying the input text bar
       this.name_search = '';
     },
+    showContacts() {
+      this.contacts_list.forEach((contact) => {
+        contact.visible = true;
+      });
+    },
     newFullDate() {
       // Getting current time in HH:MM:SS format
       let new_time = new Date().toJSON().slice(11,19);
@@ -339,6 +345,11 @@ let app = new Vue({
       this.active_contact = index_contact;
       this.scrollChat();
       this.emptySearch();
+      // this.showContacts(); // BUG TO BE FIXED
+      // this.autoscrollActiveContact(); // BUG TO BE FIXED
+    },
+    showDropdown(clicked_message) {
+      this.index_dropdown = clicked_message;
     },
     sendMessage() {
       // Creating the new sent message (object) to be added to the messages_list array

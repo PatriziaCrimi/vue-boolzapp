@@ -76,6 +76,13 @@
               <div class="message" :class="message_object.status" v-for="(message_object, index) in contacts_list[active_contact].messages_list">
                 <p>{{message_object.message}}</p>
                 <small>{{getTime(message_object.date)}}</small>
+                <i @click="showDropdown(index)" class="fas fa-angle-down"></i>
+                <div class="dropdown-box" :class="(index === index_dropdown ? 'active' : '')">
+                  <ul class="dropdown-menu">
+                    <li>Message info</li>
+                    <li>Delete message</li>
+                  </ul>
+                </div>
               </div>
             </div>
             <div id="main-bottom">
