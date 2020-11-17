@@ -42,7 +42,7 @@
             <!-- Contacts list -->
             <div class="contacts-list-container">
               <ul id="contacts-list">
-                <li v-if="contact.visible" @click="showChat(index)" :class="(index === active_contact) ? 'active' : ''" v-for="(contact, index) in contacts_list">
+                <li v-if="contact.visible" @click="showChat(index)" class="contacts" :class="(index === active_contact) ? 'active' : ''" v-for="(contact, index) in contacts_list">
                   <div class="contact-info">
                     <img :src="contact.avatar" :alt="contact.name + ' avatar'">
                     <div class="name-and-preview">

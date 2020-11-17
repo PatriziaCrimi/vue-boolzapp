@@ -1,7 +1,7 @@
 // --------------------------- CONSTANTS & VARIABLES ---------------------------
 
 let contacts_quantity = 7; // (7 = contacts_list.length - 1) ma come si fa ad accedere alle variabili in "DATA" per usarle per assegnare altre variabili sempre in "data"???
-const user_messages_list = [  // come faccio a inserirlo dentro ai "DATA" di Vue e ad averci comunque accesso per assegnare un valore ad un'altra variabile in "data" (valore legato a questa variabile qui)?
+const user_messages_list = [
   'Non esistono ostacoli troppo grossi, signore. Esistono solo motivazioni troppo piccole.',
   'Piccettino dice che quando le cose mi vanno male è perché vengo punito per il modo in cui mi sbarazzo dei testimoni di Geova quando suonano alla mia porta.',
   'Ma il problema non è tanto la fuga dei cervelli, quanto il fatto che i corpi restano qui.',
@@ -18,8 +18,6 @@ const user_messages_list = [  // come faccio a inserirlo dentro ai "DATA" di Vue
 ]
 
 // ------------------------------ FUNCTIONS ------------------------------
-
-// Come si fa a mettere queste funzioni dentro i "METHODS" e ad averne accesso per assegnare valori alle variabili dichiarate in "data" (valori legati a queste funzioni)?
 
 // Generating random number
 const getRndInteger = (min, max) => {
@@ -39,7 +37,7 @@ let app = new Vue({
     name_search: '',
     text_message: '',
     answer_waiting_time: 1000, // millisencods (1s)
-    active_contact: getRndInteger(0, contacts_quantity), // contacts_quantity = 7 = contacts_list.length - 1) ma come faccio ad accedere alla variabile "contacts_list" per usarla per assegnar eun valore a questa variabile qui??
+    active_contact: getRndInteger(0, contacts_quantity),
     user: {
       name: 'Rat-Man',
       avatar: 'img/ratman.jpg',
@@ -295,6 +293,7 @@ let app = new Vue({
   },  // Closing data
   mounted: function() {
     this.scrollChat();
+    this.autoscrollActiveContact();
   },  // Closing mounted
   methods: {
     LastMessageIndex(contact) {
@@ -411,6 +410,34 @@ let app = new Vue({
     searchAndEmpty() {
       this.searchContact();
       this.emptySearch();
+    },
+    autoscrollActiveContact() {
+      // Getting DOM elements from the <ul> <li> list of contacts
+      let contacts_window = document.getElementsByClassName('contacts-list-container')[0];
+      let active_contact = document.getElementsByClassName('active')[0];
+      let li_contacts_array = document.getElementsByClassName('contacts');
+      let active_contact_position = 0;  // the height to be given when scrolling
+      let current_contact_class = 0;
+      let active_contact_index;
+      let i = 0;
+      // Summing the heights of the <li> until the active contact is found
+      while (current_contact_class !== 'contacts active') {
+        current_contact_class = li_contacts_array[i].className;
+        if(current_contact_class !== 'contacts active') {
+          active_contact_position += li_contacts_array[i].offsetHeight;
+        } else {
+          active_contact_index = i;
+        }
+        i++;
+      };
+      // Bug too be fixed when the last <li> element is active (not fully shown)
+      if (active_contact_index === li_contacts_array.length - 1) {
+        contacts_window.scrollTop = contacts_window.scrollHeight; // doesn't work correctly
+        console.log(active_contact_index);
+      } else {
+        // Scrolling the contacts window to the position/height of the active contact
+        contacts_window.scrollTop = active_contact_position;
+      };
     },
   },  // Closing methods
 });
