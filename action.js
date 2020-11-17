@@ -357,6 +357,9 @@ let app = new Vue({
         this.dropdown_display = true;
       }
     },
+    deleteMessage(clicked_message, index_message) {
+      this.contacts_list[this.active_contact].messages_list.splice(index_message, 1);
+    },
     sendMessage() {
       // Creating the new sent message (object) to be added to the messages_list array
       let new_sent_message = {
