@@ -293,14 +293,20 @@ let app = new Vue({
       },
     ], // Closing "contacts list"
   },  // Closing data
+  mounted: function() {
+    this.scrollChat();
+  },  // Closing mounted
   methods: {
     LastMessageIndex(contact) {
       return contact.messages_list.length -1;
     },
     // Scrolling the chat window to the bottom to show the last message
     scrollChat() {
-      let chat_window = this.$el.querySelector("#chat-window");
+      // "Vue.nextTick" defers the callback to be executed after the next DOM update cycle
+      Vue.nextTick(function() {
+      let chat_window = document.getElementById('chat-window');
       chat_window.scrollTop = chat_window.scrollHeight;
+      });
     },
     emptySearch() {
       // Emptying the input text bar
@@ -377,7 +383,7 @@ let app = new Vue({
     searchContact() {
       // Scrolling the array of contacts (array of objects)
       this.contacts_list.forEach((contact) => {
-        // Transforming both current contact name and the input name to lowercase
+        // Transforming both the current contact name and the input name to lowercase
         let name_lowercase = contact.name.toLowerCase();
         let name_searched_lowercase = this.name_search.toLowerCase();
         // Splitting the full name into first name, surname and any other parts
