@@ -380,7 +380,7 @@ let app = new Vue({
     deleteMessage(index_message) {
       Vue.delete(this.contacts_list[this.active_contact].messages_list, index_message);
       this.hideDropdown();
-      console.log(this.current_date);
+      console.log(this.contacts_list[this.active_contact].messages_list);
       /*
       // --------------- OPTION 2  WITH "SPLICE" ---------------
       this.contacts_list[this.active_contact].messages_list.splice(index_message, 1);
