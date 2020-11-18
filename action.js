@@ -318,8 +318,7 @@ let app = new Vue({
       });
     },
     getFullDate() {
-      let full_date = this.getCurrentDate() + ' ' + this.getCurrentTime() + ':' + dayjs().second();
-      return full_date;
+      return dayjs().format('DD/MM/YYYY HH:mm:ss');
     },
     getCurrentDate() {
       // Months are zero indexed, so it is necessary to add 1
@@ -380,7 +379,6 @@ let app = new Vue({
     deleteMessage(index_message) {
       Vue.delete(this.contacts_list[this.active_contact].messages_list, index_message);
       this.hideDropdown();
-      console.log(this.contacts_list[this.active_contact].messages_list);
       /*
       // --------------- OPTION 2  WITH "SPLICE" ---------------
       this.contacts_list[this.active_contact].messages_list.splice(index_message, 1);

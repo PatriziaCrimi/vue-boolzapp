@@ -63,7 +63,8 @@
                 <img :src="contacts_list[active_contact].avatar" :alt="contacts_list[active_contact].name + ' avatar'">
                 <div class="name-and-preview">
                   <h3>{{contacts_list[active_contact].name}}</h3>
-                  <small>Ultimo accesso {{getCurrentDate()}} alle {{getCurrentTime()}}</small>
+                    <small>Ultimo accesso {{getFullDate()}}</small>
+                  <!-- <small>Ultimo accesso {{getCurrentDate()}} alle {{getCurrentTime()}}</small> -->
                 </div>
               </div>
               <div class="main-icons">
