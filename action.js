@@ -32,6 +32,7 @@ const getRndQuote = (quotes_list, first) => {
 let app = new Vue({
   el: '#root',
   data: {
+    recently_accessed: true,
     current_date: dayjs().format(),
     dropdown_display: false,
     index_dropdown: '',
@@ -317,18 +318,27 @@ let app = new Vue({
         contact.visible = true;
       });
     },
-    getFullDate() {
+    getCurrentDate() {
+      dayjs.extend(window.dayjs_plugin_customParseFormat);
       return dayjs().format('DD/MM/YYYY HH:mm:ss');
     },
-    getCurrentDate() {
-      // Months are zero indexed, so it is necessary to add 1
-      let current_month = parseInt(dayjs().month()) + 1;
-      let current_date = dayjs().date() + '/' + current_month + '/' + dayjs().year();
-      return current_date;
+    getOnlyDate(date) {
+      dayjs.extend(window.dayjs_plugin_customParseFormat);
+      let only_date = dayjs(date, 'DD/MM/YYYY HH:mm:ss').format('DD/MM/YYYY');
+      let todays_date = dayjs(this.getCurrentDate(), 'DD/MM/YYYY HH:mm:ss').format('DD/MM/YYYY');
+      if(only_date === todays_date) {
+        return 'oggi';
+      } else {
+        return only_date;
+      }
     },
-    getCurrentTime() {
-      let current_time = dayjs().hour() + ':' + dayjs().minute();
-      return current_time;
+    getOnlyTime(date) {
+      dayjs.extend(window.dayjs_plugin_customParseFormat);
+      return dayjs(date, 'DD/MM/YYYY HH:mm:ss').format('HH:mm');
+    },
+    // Showing last message time in the aside contacts list
+    lastMessageTime(current_contact) {
+      return this.getOnlyTime(current_contact.messages_list[this.LastMessageIndex(current_contact)].date);
     },
     /*
     // MANIPULATING DATES using "new Date" and JSON objects --> manipulated as strings
@@ -344,15 +354,31 @@ let app = new Vue({
       // Creating the current date in DD-MM-YYYY HH:MM:SS format
       return new_full_date = new_day + '/' + new_month + '/' + new_year + ' ' + new_time;
     },
-    */
     getTime(full_date) {
       return full_date.slice(11, 16);
     },
-    // Showing last message time in the aside contacts list
-    showTime(current_contact) {
-      return this.getTime(current_contact.messages_list[this.LastMessageIndex(current_contact)].date);
+    */
+    lastAccessed() {
+      let last_message_index = this.contacts_list[this.active_contact].messages_list.length - 1;
+      let index_last_received;
+      let received_found = false;
+      // Scrolling the array of messages of the active contact to find the last received message
+      for (let i = last_message_index; i >= 0 && !received_found; i--) {
+        // When found, storing its index in a variable
+        if (this.contacts_list[this.active_contact].messages_list[i].status === 'received') {
+          index_last_received = i;
+          received_found = true;
+        }
+      }
+      if(received_found) {
+        // If at kleast one received message is found, its time will be shown as the last accessed time of the active contact
+        let last_message_received = this.contacts_list[this.active_contact].messages_list[index_last_received];
+        return last_message_received.date;
+      } else {
+        // If there are no received messages in the array, it won't show the time but a funny message
+        this.recently_accessed = false;
+      };
     },
-
     // Showing only last message in the aside contacts list
     showLastMessage(current_contact) {
       return current_contact.messages_list[this.LastMessageIndex(current_contact)].message;
@@ -363,6 +389,7 @@ let app = new Vue({
       this.scrollChat();
       this.emptySearch();
       this.showContacts();
+      this.recently_accessed = true;
       // this.autoscrollActiveContact(); BUG TO BE FIXED
     },
     toggleDropdown(clicked_message) {
@@ -377,17 +404,17 @@ let app = new Vue({
       this.dropdown_display = false;
     },
     deleteMessage(index_message) {
-      Vue.delete(this.contacts_list[this.active_contact].messages_list, index_message);
+      this.contacts_list[this.active_contact].messages_list.splice(index_message, 1);
       this.hideDropdown();
       /*
-      // --------------- OPTION 2  WITH "SPLICE" ---------------
-      this.contacts_list[this.active_contact].messages_list.splice(index_message, 1);
+      // --------------- OPTION 2 WITH "VUE.DELETE" ---------------
+      Vue.delete(this.contacts_list[this.active_contact].messages_list, index_message);
       */
     },
     sendMessage() {
       // Creating the new sent message (object) to be added to the messages_list array
       let new_sent_message = {
-        date: this.getFullDate(),
+        date: this.getCurrentDate(),
         message: this.text_message,
         status: 'sent',
       };
@@ -414,7 +441,7 @@ let app = new Vue({
     receiveMessage() {
       // Creating the new received message (object) to be added to the messages_list array
       let new_received_message = {
-        date: this.getFullDate(),
+        date: this.getCurrentDate(),
         message: this.contacts_list[getRndInteger(0, contacts_quantity)].messages_list[getRndInteger(0, this.shortestQuotesList())].message,
         status: 'received',
       };
@@ -422,6 +449,8 @@ let app = new Vue({
       this.contacts_list[this.active_contact].messages_list.push(new_received_message);
       // Scrolling the chat window to the bottom to show the last message
       this.scrollChat();
+      // Updating variable to activate the lastAccessed function to visualize date and time of the last access
+      this.recently_accessed = true;
     },
     searchContact() {
       // Scrolling the array of contacts (array of objects)
@@ -475,7 +504,6 @@ let app = new Vue({
       // If it is the last contact just scrollHeight
       if (this.active_contact === li_contacts_array.length - 1) {
         contacts_window.scrollTop = contacts_window.scrollHeight;
-        console.log(this.active_contact);
       } else {
         // Scrolling the contacts window to the position/height of the active contact
         contacts_window.scrollTop = active_contact_height;
