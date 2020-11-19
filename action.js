@@ -298,12 +298,27 @@ let app = new Vue({
       },
     ], // Closing "contacts list"
   },  // Closing data
+  /*
+  // BUG TO BE FIXED: "ultimo accesso" non deve cambiare se cancello l'ultimo messaggio! Devo salvare le date/ore degli ultimi messaggi dei contatti in una variabile da poter utilizzare anche quando quelle date/ore non esistono più perché il messaggio cui appartengono è stato cancellato
+  computed: {
+    last_message_date: {
+      get: function() {
+        let array_ultime_date = [];
+        this.contacts_list.forEach((contatto, index_contact) => {
+          let data_che_mi_serve = contatto.messages_list[this.lastMessageIndex(contatto)].date;
+          array_ultime_date.push(data_che_mi_serve);
+        });
+        console.log(array_ultime_date);
+      },
+    },
+  },
+  */
   mounted: function() {
     this.scrollChat();
     this.autoscrollActiveContact();
   },  // Closing mounted
   methods: {
-    LastMessageIndex(contact) {
+    lastMessageIndex(contact) {
       return contact.messages_list.length -1;
     },
     // Scrolling the chat window to the bottom to show the last message
@@ -340,7 +355,7 @@ let app = new Vue({
     },
     // Showing last message time in the aside contacts list
     lastMessageTime(current_contact) {
-      return this.getOnlyTime(current_contact.messages_list[this.LastMessageIndex(current_contact)].date);
+      return this.getOnlyTime(current_contact.messages_list[this.lastMessageIndex(current_contact)].date);
     },
     /*
     // MANIPULATING DATES using "new Date" and JSON objects --> manipulated as strings
@@ -383,7 +398,7 @@ let app = new Vue({
     },
     // Showing only last message in the aside contacts list
     showLastMessage(current_contact) {
-      return current_contact.messages_list[this.LastMessageIndex(current_contact)].message;
+      return current_contact.messages_list[this.lastMessageIndex(current_contact)].message;
     },
     // Showing the active contact chat in the chat-window
     showChat(index_contact) {
@@ -392,7 +407,10 @@ let app = new Vue({
       this.emptySearch();
       this.showContacts();
       this.recently_accessed = true;
-      // this.autoscrollActiveContact(); BUG TO BE FIXED
+      // "Vue.nextTick" defers the callback to be executed after the next DOM update cycle --> necessary to be sure that ALL contacts have been shown again otherwise the function "autoscrollActiveContact" throws an error!
+      Vue.nextTick(() => {
+        this.autoscrollActiveContact();
+      });
     },
     toggleDropdown(clicked_message) {
       this.index_dropdown = clicked_message;
