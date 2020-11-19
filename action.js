@@ -1,3 +1,8 @@
+// Day.js plugin "customParseFormat"
+dayjs.extend(window.dayjs_plugin_customParseFormat);
+
+// ------------------ VARIABLES & CONSTANTS INITIALIZATION ------------------
+
 let contacts_quantity = 7; // (7 = contacts_list.length - 1)
 const user_messages_list = [
   'Non esistono ostacoli troppo grossi, signore. Esistono solo motivazioni troppo piccole.',
@@ -319,11 +324,9 @@ let app = new Vue({
       });
     },
     getCurrentDate() {
-      dayjs.extend(window.dayjs_plugin_customParseFormat);
       return dayjs().format('DD/MM/YYYY HH:mm:ss');
     },
     getOnlyDate(date) {
-      dayjs.extend(window.dayjs_plugin_customParseFormat);
       let only_date = dayjs(date, 'DD/MM/YYYY HH:mm:ss').format('DD/MM/YYYY');
       let todays_date = dayjs(this.getCurrentDate(), 'DD/MM/YYYY HH:mm:ss').format('DD/MM/YYYY');
       if(only_date === todays_date) {
@@ -333,7 +336,6 @@ let app = new Vue({
       }
     },
     getOnlyTime(date) {
-      dayjs.extend(window.dayjs_plugin_customParseFormat);
       return dayjs(date, 'DD/MM/YYYY HH:mm:ss').format('HH:mm');
     },
     // Showing last message time in the aside contacts list
@@ -371,7 +373,7 @@ let app = new Vue({
         }
       }
       if(received_found) {
-        // If at kleast one received message is found, its time will be shown as the last accessed time of the active contact
+        // If at least one received message is found, its time will be shown as the last accessed time of the active contact
         let last_message_received = this.contacts_list[this.active_contact].messages_list[index_last_received];
         return last_message_received.date;
       } else {
@@ -412,20 +414,23 @@ let app = new Vue({
       */
     },
     sendMessage() {
-      // Creating the new sent message (object) to be added to the messages_list array
-      let new_sent_message = {
-        date: this.getCurrentDate(),
-        message: this.text_message,
-        status: 'sent',
-      };
-      // Adding the new sent message (object) to the messages_list array of the active contact
-      this.contacts_list[this.active_contact].messages_list.push(new_sent_message);
-      // Scrolling the chat window to the bottom to show the last message
-      this.scrollChat();
-      // Emptying the input text bar
-      this.text_message = '';
-      // Timing function fot the auto-reply
-      setTimeout(this.receiveMessage, this.answer_waiting_time);
+      // Checking if the message is empty (space character is considered empty)
+      if(this.text_message.trim().length > 0) {
+        // Creating the new sent message (object) to be added to the messages_list array
+        let new_sent_message = {
+          date: this.getCurrentDate(),
+          message: this.text_message,
+          status: 'sent',
+        };
+        // Adding the new sent message (object) to the messages_list array of the active contact
+        this.contacts_list[this.active_contact].messages_list.push(new_sent_message);
+        // Scrolling the chat window to the bottom to show the last message
+        this.scrollChat();
+        // Emptying the input text bar
+        this.text_message = '';
+        // Timing function fot the auto-reply
+        setTimeout(this.receiveMessage, this.answer_waiting_time);
+      }
     },
     // Checking the shortest list of quotes to use it as a parameter when generating random message (quote) in the auto-reply
     shortestQuotesList() {
