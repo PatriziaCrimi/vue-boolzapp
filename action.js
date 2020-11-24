@@ -298,21 +298,38 @@ let app = new Vue({
       },
     ], // Closing "contacts list"
   },  // Closing data
-  /*
-  // BUG TO BE FIXED: "ultimo accesso" non deve cambiare se cancello l'ultimo messaggio! Devo salvare le date/ore degli ultimi messaggi dei contatti in una variabile da poter utilizzare anche quando quelle date/ore non esistono più perché il messaggio cui appartengono è stato cancellato
   computed: {
-    last_message_date: {
-      get: function() {
-        let array_ultime_date = [];
-        this.contacts_list.forEach((contatto, index_contact) => {
-          let data_che_mi_serve = contatto.messages_list[this.lastMessageIndex(contatto)].date;
-          array_ultime_date.push(data_che_mi_serve);
-        });
-        console.log(array_ultime_date);
-      },
+    // Creating an array containing the received last messages dates to be stored and used in the "Ultimo accesso" section
+    last_received_dates: function() {
+      let last_dates_list = [];
+      // Scrolling the array of contacts to find the received last messages dates
+      this.contacts_list.forEach((contact) => {
+        let last_message_index = this.lastMessageIndex(contact);
+        // Scrolling the array of messages of the current contact to find the last received message
+        let received_found = false;
+        for (let i = last_message_index; i >= 0 && !received_found; i--) {
+          // When found, pushing its date into the array of the last dates
+          if (contact.messages_list[i].status === 'received') {
+            // OPTION 1: with "spread operator"
+            last_dates_list = [...last_dates_list, contact.messages_list[i].date];
+            /*
+            // OPTION 2: with "push"
+            last_dates_list.push(contact.messages_list[i].date);
+            */
+            received_found = true;
+          }
+        }
+        if(!received_found) {
+          // If there are no received messages in the messages array, it won't show the time but a funny message
+          this.recently_accessed = false;
+          // And in the array of last dates it is pushed a string (just to maintain the indexes corrospendent to the contacts)
+          last_dates_list.push('No received messages found');
+        };
+      });
+      console.log(last_dates_list);
+      return last_dates_list;
     },
   },
-  */
   mounted: function() {
     this.scrollChat();
     this.autoscrollActiveContact();
@@ -375,27 +392,6 @@ let app = new Vue({
       return full_date.slice(11, 16);
     },
     */
-    lastAccessed() {
-      let last_message_index = this.contacts_list[this.active_contact].messages_list.length - 1;
-      let index_last_received;
-      let received_found = false;
-      // Scrolling the array of messages of the active contact to find the last received message
-      for (let i = last_message_index; i >= 0 && !received_found; i--) {
-        // When found, storing its index in a variable
-        if (this.contacts_list[this.active_contact].messages_list[i].status === 'received') {
-          index_last_received = i;
-          received_found = true;
-        }
-      }
-      if(received_found) {
-        // If at least one received message is found, its time will be shown as the last accessed time of the active contact
-        let last_message_received = this.contacts_list[this.active_contact].messages_list[index_last_received];
-        return last_message_received.date;
-      } else {
-        // If there are no received messages in the array, it won't show the time but a funny message
-        this.recently_accessed = false;
-      };
-    },
     // Showing only last message in the aside contacts list
     showLastMessage(current_contact) {
       return current_contact.messages_list[this.lastMessageIndex(current_contact)].message;
@@ -472,8 +468,6 @@ let app = new Vue({
       this.contacts_list[this.active_contact].messages_list.push(new_received_message);
       // Scrolling the chat window to the bottom to show the last message
       this.scrollChat();
-      // Updating variable to activate the lastAccessed function to visualize date and time of the last access
-      this.recently_accessed = true;
     },
     searchContact() {
       // Scrolling the array of contacts (array of objects)

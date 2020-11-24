@@ -64,8 +64,8 @@
                 <img :src="contacts_list[active_contact].avatar" :alt="contacts_list[active_contact].name + ' avatar'">
                 <div class="name-and-preview">
                   <h3>{{contacts_list[active_contact].name}}</h3>
-                  <small v-if="recently_accessed">Ultimo accesso {{getOnlyDate(lastAccessed())}}</small>
-                  <small v-if="recently_accessed"> alle {{getOnlyTime(lastAccessed())}}</small>
+                  <small v-if="recently_accessed">Ultimo accesso {{getOnlyDate(last_received_dates[active_contact])}}</small>
+                  <small v-if="recently_accessed"> alle {{getOnlyTime(last_received_dates[active_contact])}}</small>
                   <small v-else>Ultimo accesso: troppo tempo fa!!!</small>
                 </div>
               </div>
