@@ -359,13 +359,15 @@ let app = new Vue({
       return dayjs().format('DD/MM/YYYY HH:mm:ss');
     },
     getOnlyDate(date) {
+      let date_to_display;
       let only_date = dayjs(date, 'DD/MM/YYYY HH:mm:ss').format('DD/MM/YYYY');
       let todays_date = dayjs(this.getCurrentDate(), 'DD/MM/YYYY HH:mm:ss').format('DD/MM/YYYY');
       if(only_date === todays_date) {
-        return 'oggi';
+        date_to_display = 'oggi';
       } else {
-        return only_date;
+        date_to_display = only_date;
       }
+      return date_to_display;
     },
     getOnlyTime(date) {
       return dayjs(date, 'DD/MM/YYYY HH:mm:ss').format('HH:mm');
